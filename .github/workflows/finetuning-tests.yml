@@ -1,0 +1,24 @@
+name: Fine-Tuning Lab Tests
+
+on:
+  push:
+    branches: ["main", "achievement-3/finetuning-research-lab"]
+  pull_request:
+    paths:
+      - "finetuning-lab/**"
+      - ".github/workflows/finetuning-tests.yml"
+
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: finetuning-lab
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: pip install -e ".[dev]"
+      - run: pytest
+      - run: python -m compileall src scripts

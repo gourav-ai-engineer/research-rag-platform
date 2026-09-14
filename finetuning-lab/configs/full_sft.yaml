@@ -1,0 +1,13 @@
+model_name: Qwen/Qwen2.5-0.5B-Instruct
+data_path: data/processed/docvqa_train.jsonl
+output_dir: outputs/full_sft
+method: full_sft
+seed: 42
+max_seq_length: 1024
+num_train_epochs: 3
+learning_rate: 0.00002
+per_device_train_batch_size: 1
+gradient_accumulation_steps: 16
+warmup_ratio: 0.05
+logging_steps: 10
+save_strategy: epoch
